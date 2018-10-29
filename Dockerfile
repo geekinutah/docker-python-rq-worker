@@ -13,7 +13,7 @@ RUN apt-get -q update >/dev/null \
     && apt-get install -y python3 python3-dev curl build-essential git supervisor \
     && curl https://bootstrap.pypa.io/get-pip.py | python3 \
     && pip3 install rq \
-    && pip3 install Jinja \
+    && pip install Jinja \
     # Cleanup
     && apt-get clean autoclean \
     && apt-get autoremove --yes \
