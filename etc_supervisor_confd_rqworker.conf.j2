@@ -1,6 +1,6 @@
 [program:rqworker]
-command=/usr/local/bin/rq worker {{RQ_QUEUE}} -u redis://{{REDIS_HOST}}:{{REDIS_PORT}}/{{REDIS_DB}} --logging_level {{LOG_LEVEL}}
-;process_name=%(program_name)s%(process_num)01d
+command=/usr/local/bin/rq worker {{env['RQ_QUEUE']}} -u redis://{{env['REDIS_HOST']}}:{{env['REDIS_PORT']}}/{{env['REDIS_DB']}} --logging_level {{env['LOG_LEVEL']}}
+process_name=%(program_name)s%(process_num)01d
 
 ; If you want to run more than one worker instance, increase this
 numprocs=2

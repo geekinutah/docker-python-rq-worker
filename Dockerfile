@@ -12,17 +12,17 @@ ENV PIP_PACKAGES=none
 RUN apt-get -q update >/dev/null \
     && apt-get install -y python3 python3-dev curl build-essential git supervisor \
     && curl https://bootstrap.pypa.io/get-pip.py | python3 \
+    && curl https://bootstrap.pypa.io/get-pip.py | python \
     && pip3 install rq \
-    && pip install Jinja \
+    && pip install Jinja2 \
     # Cleanup
     && apt-get clean autoclean \
     && apt-get autoremove --yes \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/ 
 
 
-#COPY start_ssh_server.sh /usr/bin/start_ssh_server.sh
+COPY start_rq_worker.sh /usr/bin/start_rq_worker.sh
 COPY etc_supervisor_confd_rqworker.conf.j2 /etc/supervisor/conf.d/rqworker.conf.j2
 VOLUME ["/pythonimports"]
 
-#ENTRYPOINT ["/usr/bin/start_ssh_server.sh"]
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/usr/bin/start_rq_worker.sh"]
