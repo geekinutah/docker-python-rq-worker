@@ -1,0 +1,18 @@
+[program:rqworker]
+command=/usr/local/bin/rq worker {{RQ_QUEUE}} -u redis://{{REDIS_HOST}}:{{REDIS_PORT}}/{{REDIS_DB}} --logging_level {{LOG_LEVEL}}
+;process_name=%(program_name)s%(process_num)01d
+
+; If you want to run more than one worker instance, increase this
+numprocs=2
+
+; This is the directory from which RQ is ran. Be sure to point this to the
+; directory where your source code is importable from. rq-scheduler depends
+; on this directory to correctly import functions.
+directory=/pythonimports
+
+; RQ requires the TERM signal to perform a warm shutdown. If RQ does not die
+; within 10 seconds, supervisor will forcefully kill it
+stopsignal=TERM
+
+autostart=true
+autorestart=true
