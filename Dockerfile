@@ -2,7 +2,7 @@ FROM ubuntu:latest
 MAINTAINER Mike Wilson <geekinutah@gmail.com>
 
 ENV TERM=xterm-256color
-ENV REDIS_HOST=localhost
+ENV REDIS_HOST=redis
 ENV REDIS_PORT=6379
 ENV REDIS_DB=0
 ENV RQ_QUEUE=default
