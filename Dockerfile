@@ -8,6 +8,8 @@ ENV REDIS_DB=0
 ENV RQ_QUEUE=default
 ENV LOG_LEVEL=DEBUG
 ENV PIP_PACKAGES=none
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
 RUN apt-get -q update >/dev/null \
     && apt-get install -y python3 python3-dev curl build-essential git supervisor \
